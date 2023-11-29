@@ -1,13 +1,8 @@
 {
-    "name": "nfephp-org/sped-nfe",
+    "name": "upgestao/sped-nfe",
     "type": "library",
-    "description": "API para geração e comunicação da NFe e NFCe com as SEFAZ autorizadoras.",
-    "keywords": [
-        "nfe",
-        "nfce",
-        "sped",
-        "nfephp"
-    ],
+    "description": "API para geração e comunicação da NFe e NFCe com as SEFAZ autorizadoras. - verão modificada para uso com php 7.2",
+    "keywords": ["nfe","nfce","sped","nfephp"],
     "homepage": "https://github.com/nfephp-org/sped-nfe",
     "license": [
         "LGPL-3.0-or-later",
@@ -33,9 +28,9 @@
         }
     ],
     "require": {
-        "php": ">= 7.4",
-        "nfephp-org/sped-common": "^5.1.0",
-        "nfephp-org/sped-gtin": "^1.1.0",
+        "php" : ">= 7.0",
+        "nfephp-org/sped-common" : "5.0.57",
+        "nfephp-org/sped-gtin" : "^1.0",
         "justinrainbow/json-schema": "^5.2",
         "ext-zlib": "*",
         "ext-dom": "*",

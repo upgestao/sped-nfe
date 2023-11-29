@@ -3282,86 +3282,86 @@ class Make
                     "$identificador [item $std->item] Motivo da desoneração do ICMS- ST"
                 );
                 break;
-            case '15':
-                $this->stdTot->qBCMono += (float) !empty($std->qBCMono) ? $std->qBCMono : 0;
-                $this->stdTot->vICMSMono += (float) !empty($std->vICMSMono) ? $std->vICMSMono : 0;
-                $this->stdTot->qBCMonoReten += (float) !empty($std->qBCMonoReten) ? $std->qBCMonoReten : 0;
-                $this->stdTot->vICMSMonoReten += (float) !empty($std->vICMSMonoReten) ? $std->vICMSMonoReten : 0;
+                case '15':
+                    $this->stdTot->qBCMono += (float) !empty($std->qBCMono) ? $std->qBCMono : 0;
+                    $this->stdTot->vICMSMono += (float) !empty($std->vICMSMono) ? $std->vICMSMono : 0;
+                    $this->stdTot->qBCMonoReten += (float) !empty($std->qBCMonoReten) ? $std->qBCMonoReten : 0;
+                    $this->stdTot->vICMSMonoReten += (float) !empty($std->vICMSMonoReten) ? $std->vICMSMonoReten : 0;
 
-                $icms = $this->dom->createElement("ICMS15");
-                $this->dom->addChild(
-                    $icms,
-                    'orig',
-                    $std->orig,
-                    true,
-                    "$identificador [item $std->item] Origem da mercadoria"
-                );
-                $this->dom->addChild(
-                    $icms,
-                    'CST',
-                    $std->CST,
-                    true,
-                    "$identificador [item $std->item] Tributação do ICMS = 15"
-                );
-                $this->dom->addChild(
-                    $icms,
-                    'qBCMono',
-                    $this->conditionalNumberFormatting($std->qBCMono, 4),
-                    false,
-                    "$identificador [item $std->item] Quantidade tributada"
-                );
-                $this->dom->addChild(
-                    $icms,
-                    'adRemICMS',
-                    $this->conditionalNumberFormatting($std->adRemICMS, 4),
-                    true,
-                    "$identificador [item $std->item] Alíquota ad rem do imposto"
-                );
-                $this->dom->addChild(
-                    $icms,
-                    'vICMSMono',
-                    $this->conditionalNumberFormatting($std->vICMSMono),
-                    true,
-                    "$identificador [item $std->item] Valor do ICMS próprio"
-                );
-                $this->dom->addChild(
-                    $icms,
-                    'qBCMonoReten',
-                    $this->conditionalNumberFormatting($std->qBCMonoReten, 4),
-                    false,
-                    "$identificador [item $std->item] Quantidade tributada sujeita a retenção"
-                );
-                $this->dom->addChild(
-                    $icms,
-                    'adRemICMSReten',
-                    $this->conditionalNumberFormatting($std->adRemICMSReten, 4),
-                    true,
-                    "$identificador [item $std->item] Alíquota ad rem do imposto com retenção"
-                );
-                $this->dom->addChild(
-                    $icms,
-                    'vICMSMonoReten',
-                    $this->conditionalNumberFormatting($std->vICMSMonoReten),
-                    true,
-                    "$identificador [item $std->item] Valor do ICMS com retenção"
-                );
-                if (!empty($std->pRedAdRem)) {
+                    $icms = $this->dom->createElement("ICMS15");
                     $this->dom->addChild(
                         $icms,
-                        "pRedAdRem",
-                        $this->conditionalNumberFormatting($std->pRedAdRem),
+                        'orig',
+                        $std->orig,
                         true,
-                        "Percentual de redução do valor da alíquota adrem do ICMS"
+                        "$identificador [item $std->item] Origem da mercadoria"
                     );
                     $this->dom->addChild(
                         $icms,
-                        "motRedAdRem",
-                        $std->motRedAdRem,
+                        'CST',
+                        $std->CST,
                         true,
-                        "Motivo da redução do adrem"
+                        "$identificador [item $std->item] Tributação do ICMS = 15"
                     );
-                }
-                break;
+                    $this->dom->addChild(
+                        $icms,
+                        'qBCMono',
+                        $this->conditionalNumberFormatting($std->qBCMono, 4),
+                        false,
+                        "$identificador [item $std->item] Quantidade tributada"
+                    );
+                    $this->dom->addChild(
+                        $icms,
+                        'adRemICMS',
+                        $this->conditionalNumberFormatting($std->adRemICMS, 4),
+                        true,
+                        "$identificador [item $std->item] Alíquota ad rem do imposto"
+                    );
+                    $this->dom->addChild(
+                        $icms,
+                        'vICMSMono',
+                        $this->conditionalNumberFormatting($std->vICMSMono),
+                        true,
+                        "$identificador [item $std->item] Valor do ICMS próprio"
+                    );
+                    $this->dom->addChild(
+                        $icms,
+                        'qBCMonoReten',
+                        $this->conditionalNumberFormatting($std->qBCMonoReten, 4),
+                        false,
+                        "$identificador [item $std->item] Quantidade tributada sujeita a retenção"
+                    );
+                    $this->dom->addChild(
+                        $icms,
+                        'adRemICMSReten',
+                        $this->conditionalNumberFormatting($std->adRemICMSReten, 4),
+                        true,
+                        "$identificador [item $std->item] Alíquota ad rem do imposto com retenção"
+                    );
+                    $this->dom->addChild(
+                        $icms,
+                        'vICMSMonoReten',
+                        $this->conditionalNumberFormatting($std->vICMSMonoReten),
+                        true,
+                        "$identificador [item $std->item] Valor do ICMS com retenção"
+                    );
+                    if (!empty($std->pRedAdRem)) {
+                        $this->dom->addChild(
+                            $icms,
+                            "pRedAdRem",
+                            $this->conditionalNumberFormatting($std->pRedAdRem),
+                            true,
+                            "Percentual de redução do valor da alíquota adrem do ICMS"
+                        );
+                        $this->dom->addChild(
+                            $icms,
+                            "motRedAdRem",
+                            $std->motRedAdRem,
+                            true,
+                            "Motivo da redução do adrem"
+                        );
+                    }
+                    break;
             case '20':
                 $this->stdTot->vICMSDeson += (float) !empty($std->vICMSDeson) ? $std->vICMSDeson : 0;
                 $this->stdTot->vBC += (float) !empty($std->vBC) ? $std->vBC : 0;
@@ -3712,73 +3712,74 @@ class Make
                         . "ao Fundo de Combate à Pobreza (FCP)"
                 );
                 break;
-            case '53':
-                $this->stdTot->qBCMono += (float) !empty($std->qBCMono) ? $std->qBCMono : 0;
-                $this->stdTot->vICMSMono += (float) !empty($std->vICMSMono) ? $std->vICMSMono : 0;
-                $this->stdTot->qBCMonoReten += (float) !empty($std->qBCMonoReten) ? $std->qBCMonoReten : 0;
-                $this->stdTot->vICMSMonoReten += (float) !empty($std->vICMSMonoReten) ? $std->vICMSMonoReten : 0;
+                case '53':
+                    $this->stdTot->qBCMono += (float) !empty($std->qBCMono) ? $std->qBCMono : 0;
+                    $this->stdTot->vICMSMono += (float) !empty($std->vICMSMono) ? $std->vICMSMono : 0;
+                    $this->stdTot->qBCMonoReten += (float) !empty($std->qBCMonoReten) ? $std->qBCMonoReten : 0;
+                    $this->stdTot->vICMSMonoReten += (float) !empty($std->vICMSMonoReten) ? $std->vICMSMonoReten : 0;
 
-                $icms = $this->dom->createElement("ICMS53");
-                $this->dom->addChild(
-                    $icms,
-                    'orig',
-                    $std->orig,
-                    true,
-                    "$identificador [item $std->item] Origem da mercadoria"
-                );
-                $this->dom->addChild(
-                    $icms,
-                    'CST',
-                    $std->CST,
-                    true,
-                    "$identificador [item $std->item] Tributação do ICMS = 53"
-                );
-                $this->dom->addChild(
-                    $icms,
-                    'qBCMono',
-                    $this->conditionalNumberFormatting($std->qBCMono, 4),
-                    false,
-                    "$identificador [item $std->item] BC do ICMS em quantidade conforme unidade de medida "
-                        . "estabelecida na legislação para o produto"
-                );
-                $this->dom->addChild(
-                    $icms,
-                    'adRemICMS',
-                    $this->conditionalNumberFormatting($std->adRemICMS, 4),
-                    false,
-                    "$identificador [item $std->item] Alíquota ad rem do ICMS estabelecida para o produto."
-                );
-                $this->dom->addChild(
-                    $icms,
-                    'vICMSMonoOp',
-                    $this->conditionalNumberFormatting($std->vICMSMonoOp),
-                    false,
-                    "$identificador [item $std->item] valor do ICMS é obtido pela multiplicação da alíquota ad "
-                        . "rem pela quantidade do produto conforme unidade de "
-                        . "medida estabelecida em legislação, como se não houvesseo diferimento."
-                );
-                $this->dom->addChild(
-                    $icms,
-                    'pDif',
-                    $this->conditionalNumberFormatting($std->pDif, 4),
-                    false,
-                    "$identificador [item $std->item] Percentual do diferimento"
-                );
-                $this->dom->addChild(
-                    $icms,
-                    'vICMSMonoDif',
-                    $this->conditionalNumberFormatting($std->vICMSMonoDif),
-                    false,
-                    "$identificador [item $std->item] Valor do ICMS diferido"
-                );
-                $this->dom->addChild(
-                    $icms,
-                    'vICMSMono',
-                    $this->conditionalNumberFormatting($std->vICMSMono),
-                    false,
-                    "$identificador [item $std->item] Valor do ICMS próprio devido"
-                );
-                break;
+                    $icms = $this->dom->createElement("ICMS53");
+                    $this->dom->addChild(
+                        $icms,
+                        'orig',
+                        $std->orig,
+                        true,
+                        "$identificador [item $std->item] Origem da mercadoria"
+                    );
+                    $this->dom->addChild(
+                        $icms,
+                        'CST',
+                        $std->CST,
+                        true,
+                        "$identificador [item $std->item] Tributação do ICMS = 53"
+                    );
+                    $this->dom->addChild(
+                        $icms,
+                        'qBCMono',
+                        $this->conditionalNumberFormatting($std->qBCMono, 4),
+                        false,
+                        "$identificador [item $std->item] BC do ICMS em quantidade conforme unidade de medida "
+                            . "estabelecida na legislação para o produto"
+                    );
+                    $this->dom->addChild(
+                        $icms,
+                        'adRemICMS',
+                        $this->conditionalNumberFormatting($std->adRemICMS, 4),
+                        false,
+                        "$identificador [item $std->item] Alíquota ad rem do ICMS estabelecida para o produto."
+                    );
+                    $this->dom->addChild(
+                        $icms,
+                        'vICMSMonoOp',
+                        $this->conditionalNumberFormatting($std->vICMSMonoOp),
+                        false,
+                        "$identificador [item $std->item] valor do ICMS é obtido pela multiplicação da alíquota ad "
+                            . "rem pela quantidade do produto conforme unidade de "
+                            . "medida estabelecida em legislação, como se não houvesseo diferimento."
+                    );
+                    $this->dom->addChild(
+                        $icms,
+                        'pDif',
+                        $this->conditionalNumberFormatting($std->pDif, 4),
+                        false,
+                        "$identificador [item $std->item] Percentual do diferimento"
+                    );
+                    $this->dom->addChild(
+                        $icms,
+                        'vICMSMonoDif',
+                        $this->conditionalNumberFormatting($std->vICMSMonoDif),
+                        false,
+                        "$identificador [item $std->item] Valor do ICMS diferido"
+                    );
+                    $this->dom->addChild(
+                        $icms,
+                        'vICMSMono',
+                        $this->conditionalNumberFormatting($std->vICMSMono),
+                        false,
+                        "$identificador [item $std->item] Valor do ICMS próprio devido"
+                    );
+                    break;
+
             case '60':
                 $this->stdTot->vFCPSTRet += (float) !empty($std->vFCPSTRet) ? $std->vFCPSTRet : 0;
                 $icms = $this->dom->createElement("ICMS60");
@@ -6151,8 +6152,8 @@ class Make
             "Valor Total do FCP retido anteriormente por "
                 . "Substituição Tributária"
         );
-        //incluso NT 2023.001-1.10
-        $this->dom->addChild(
+          //incluso NT 2023.001-1.10
+          $this->dom->addChild(
             $ICMSTot,
             "qBCMono",
             $this->conditionalNumberFormatting(!empty($qBCMono) ? $qBCMono : null),

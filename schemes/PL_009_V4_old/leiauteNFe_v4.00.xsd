@@ -555,6 +555,7 @@ Este campo será obrigatoriamente preenchido com:
 												<xs:enumeration value="1"/>
 												<xs:enumeration value="2"/>
 												<xs:enumeration value="3"/>
+                                                <xs:enumeration value="4"/>
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>

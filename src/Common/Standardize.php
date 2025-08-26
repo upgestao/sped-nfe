@@ -23,11 +23,11 @@ use stdClass;
 class Standardize
 {
     private $xml = '';
-    private string $node = '';
-    private string $json = '';
-    public string $key = '';
-    private object $sxml;
-    public array $rootTagList = [
+    private  $node = '';
+    private  $json = '';
+    public  $key = '';
+    private  $sxml;
+    public  $rootTagList = [
         'distDFeInt',
         'resNFe',
         'resEvento',

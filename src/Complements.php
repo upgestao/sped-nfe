@@ -213,27 +213,33 @@ class Complements
      */
     protected static function addNFeProtocol(string $request, string $response): string
     {
-        $req = new DOMDocument('1.0', 'UTF-8');
+              $req = new DOMDocument('1.0', 'UTF-8');
         $req->preserveWhiteSpace = false;
         $req->formatOutput = false;
         $req->loadXML($request);
-
         $nfe = $req->getElementsByTagName('NFe')->item(0);
         $infNFe = $req->getElementsByTagName('infNFe')->item(0);
         $versao = $infNFe->getAttribute("versao");
-        $chave = preg_replace('/[^0-9]/', '', $infNFe->getAttribute("Id"));
+        $chave = substr($infNFe->getAttribute("Id"), 3, 44);
         $digNFe = $req->getElementsByTagName('DigestValue')
             ->item(0)
             ->nodeValue;
-
+        //retorno
         $ret = new DOMDocument('1.0', 'UTF-8');
         $ret->preserveWhiteSpace = false;
         $ret->formatOutput = false;
         $ret->loadXML($response);
-        $retProt = $ret->getElementsByTagName('protNFe')->length > 0 ? $ret->getElementsByTagName('protNFe') : null;
-        if ($retProt === null) {
-            throw DocumentsException::wrongDocument(3, "&lt;protNFe&gt;");
+        $prottpAmb = $ret->getElementsByTagName('tpAmb')->item(0)->nodeValue;
+        $verAplic = $ret->getElementsByTagName('verAplic')->item(0)->nodeValue;
+        $chNFe = $ret->getElementsByTagName('chNFe')->item(0)->nodeValue;
+        $dhRecbto = $ret->getElementsByTagName('dhRecbto')->item(0)->nodeValue;
+        $cStat = $ret->getElementsByTagName('cStat')->item(0)->nodeValue;
+        $xMotivo = $ret->getElementsByTagName('xMotivo')->item(0)->nodeValue;
+        if ($chNFe !== $chave) {
+            throw DocumentsException::wrongDocument(5, 'A chave da NFe não é igual a chave do protocolo');
         }
+        //retorno pode vir sem o protNFe
+        $retProt = $ret->getElementsByTagName('protNFe')->length > 0 ? $ret->getElementsByTagName('protNFe') : null;
         $digProt = null;
         foreach ($retProt as $rp) {
             $infProt = $rp->getElementsByTagName('infProt')->item(0);
